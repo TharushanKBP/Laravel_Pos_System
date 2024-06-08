@@ -8,11 +8,11 @@
                 <i class="bi bi-check2-circle mr-2 text-success" style="line-height: 1;"></i> Make Sale
             </a>
         @endcan
-        @can('send_quotation_mails')
+        <!-- @can('send_quotation_mails')
             <a href="{{ route('quotation.email', $data) }}" class="dropdown-item">
                 <i class="bi bi-cursor mr-2 text-warning" style="line-height: 1;"></i> Send On Email
             </a>
-        @endcan
+        @endcan -->
         @can('edit_quotations')
             <a href="{{ route('quotations.edit', $data->id) }}" class="dropdown-item">
                 <i class="bi bi-pencil mr-2 text-primary" style="line-height: 1;"></i> Edit

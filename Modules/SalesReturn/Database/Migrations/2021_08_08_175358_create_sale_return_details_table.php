@@ -19,7 +19,7 @@ class CreateSaleReturnDetailsTable extends Migration
             $table->unsignedBigInteger('product_id')->nullable();
             $table->string('product_name');
             $table->string('product_code');
-            $table->integer('quantity');
+            $table->decimal('quantity', 8, 2);
             $table->integer('price');
             $table->integer('unit_price');
             $table->integer('sub_total');
