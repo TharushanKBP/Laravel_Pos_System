@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->decimal('product_cost', 15, 2); // Changed to decimal with higher precision and scale
             $table->decimal('product_price', 15, 2); // Changed to decimal with higher precision and scale
             $table->string('product_unit')->nullable();
-            $table->integer('product_stock_alert');
+            $table->decimal('product_stock_alert', 8, 2);
             $table->decimal('product_order_tax', 5, 2)->nullable(); // Changed to decimal with precision 5 and scale 2
             $table->tinyInteger('product_tax_type')->nullable();
             $table->text('product_note')->nullable();

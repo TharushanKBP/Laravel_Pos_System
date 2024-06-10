@@ -32,12 +32,13 @@ class StoreProductRequest extends FormRequest
             'product_quantity' => ['required', 'numeric', 'min:0.00'],
             'product_cost' => ['required', 'numeric', 'max:9999999999999.99'],
             'product_price' => ['required', 'numeric', 'max:9999999999999.99'],
-            'product_stock_alert' => ['required', 'integer', 'min:0'],
+            'product_stock_alert' => ['required', 'numeric', 'min:0.00'], // Changed to numeric for consistency
             'product_order_tax' => ['nullable', 'numeric', 'min:0', 'max:100'],
             'product_tax_type' => ['nullable', 'integer'],
             'product_note' => ['nullable', 'string', 'max:1000'],
-            'product_image' => ['nullable', 'string', 'max:255'], // Ensure consistency with the schema
-            'category_id' => ['required', 'exists:categories,id'] // Ensures the category exists
+            'product_image' => ['nullable', 'array'], // Validate as array if multiple images
+            'product_image.*' => ['file', 'mimes:jpg,jpeg,png', 'max:2048'], // Validate each file in the array
+            'category_id' => ['required', 'exists:categories,id'], // Ensures the category exists
         ];
     }
 }
