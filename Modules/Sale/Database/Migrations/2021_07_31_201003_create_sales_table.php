@@ -20,13 +20,13 @@ class CreateSalesTable extends Migration
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->string('customer_name');
             $table->integer('tax_percentage')->default(0);
-            $table->decimal('tax_amount', 15, 2)->default(0); // Changed to decimal with higher precision and scale
+            $table->decimal('tax_amount', 15, 2)->default(0);
             $table->integer('discount_percentage')->default(0);
-            $table->decimal('discount_amount', 15, 2)->default(0); // Changed to decimal with higher precision and scale
-            $table->decimal('shipping_amount', 15, 2)->default(0); // Changed to decimal with higher precision and scale
-            $table->decimal('total_amount', 15, 2); // Changed to decimal with higher precision and scale
-            $table->decimal('paid_amount', 15, 2); // Changed to decimal with higher precision and scale
-            $table->decimal('due_amount', 15, 2); // Changed to decimal with higher precision and scale
+            $table->decimal('discount_amount', 15, 2)->default(0);
+            $table->decimal('shipping_amount', 15, 2)->default(0);
+            $table->decimal('total_amount', 15, 2);
+            $table->decimal('paid_amount', 15, 2);
+            $table->decimal('due_amount', 15, 2);
             $table->string('status');
             $table->string('payment_status');
             $table->string('payment_method');

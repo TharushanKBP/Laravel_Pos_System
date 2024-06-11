@@ -13,8 +13,8 @@ use Modules\Sale\Entities\SalePayment;
 
 class SalePaymentsController extends Controller
 {
-    public function index($sale_id, SalePaymentsDataTable $dataTable)
-    {
+
+    public function index($sale_id, SalePaymentsDataTable $dataTable) {
         abort_if(Gate::denies('access_sale_payments'), 403);
 
         $sale = Sale::findOrFail($sale_id);
@@ -22,8 +22,8 @@ class SalePaymentsController extends Controller
         return $dataTable->render('sale::payments.index', compact('sale'));
     }
 
-    public function create($sale_id)
-    {
+
+    public function create($sale_id) {
         abort_if(Gate::denies('access_sale_payments'), 403);
 
         $sale = Sale::findOrFail($sale_id);
@@ -31,8 +31,8 @@ class SalePaymentsController extends Controller
         return view('sale::payments.create', compact('sale'));
     }
 
-    public function store(Request $request)
-    {
+
+    public function store(Request $request) {
         abort_if(Gate::denies('access_sale_payments'), 403);
 
         $request->validate([
@@ -45,9 +45,7 @@ class SalePaymentsController extends Controller
         ]);
 
         DB::transaction(function () use ($request) {
-            $sale = Sale::findOrFail($request->sale_id);
-
-            $salePayment = SalePayment::create([
+            SalePayment::create([
                 'date' => $request->date,
                 'reference' => $request->reference,
                 'amount' => $request->amount,
@@ -55,6 +53,8 @@ class SalePaymentsController extends Controller
                 'sale_id' => $request->sale_id,
                 'payment_method' => $request->payment_method
             ]);
+
+            $sale = Sale::findOrFail($request->sale_id);
 
             $due_amount = $sale->due_amount - $request->amount;
 
@@ -67,8 +67,8 @@ class SalePaymentsController extends Controller
             }
 
             $sale->update([
-                'paid_amount' => $sale->paid_amount + $request->amount,
-                'due_amount' => $due_amount,
+                'paid_amount' => ($sale->paid_amount + $request->amount) * 100,
+                'due_amount' => $due_amount * 100,
                 'payment_status' => $payment_status
             ]);
         });
@@ -78,8 +78,8 @@ class SalePaymentsController extends Controller
         return redirect()->route('sales.index');
     }
 
-    public function edit($sale_id, SalePayment $salePayment)
-    {
+
+    public function edit($sale_id, SalePayment $salePayment) {
         abort_if(Gate::denies('access_sale_payments'), 403);
 
         $sale = Sale::findOrFail($sale_id);
@@ -87,8 +87,8 @@ class SalePaymentsController extends Controller
         return view('sale::payments.edit', compact('salePayment', 'sale'));
     }
 
-    public function update(Request $request, SalePayment $salePayment)
-    {
+
+    public function update(Request $request, SalePayment $salePayment) {
         abort_if(Gate::denies('access_sale_payments'), 403);
 
         $request->validate([
@@ -114,8 +114,8 @@ class SalePaymentsController extends Controller
             }
 
             $sale->update([
-                'paid_amount' => $sale->paid_amount - $salePayment->amount + $request->amount,
-                'due_amount' => $due_amount,
+                'paid_amount' => (($sale->paid_amount - $salePayment->amount) + $request->amount) * 100,
+                'due_amount' => $due_amount * 100,
                 'payment_status' => $payment_status
             ]);
 
@@ -134,21 +134,11 @@ class SalePaymentsController extends Controller
         return redirect()->route('sales.index');
     }
 
-    public function destroy(SalePayment $salePayment)
-    {
+
+    public function destroy(SalePayment $salePayment) {
         abort_if(Gate::denies('access_sale_payments'), 403);
 
-        DB::transaction(function () use ($salePayment) {
-            $sale = $salePayment->sale;
-
-            $sale->update([
-                'paid_amount' => $sale->paid_amount - $salePayment->amount,
-                'due_amount' => $sale->due_amount + $salePayment->amount,
-                'payment_status' => $sale->due_amount + $salePayment->amount == $sale->total_amount ? 'Unpaid' : ($sale->due_amount > 0 ? 'Partial' : 'Paid')
-            ]);
-
-            $salePayment->delete();
-        });
+        $salePayment->delete();
 
         toast('Sale Payment Deleted!', 'warning');
 

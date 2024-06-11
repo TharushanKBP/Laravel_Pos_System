@@ -19,10 +19,10 @@ class CreatePurchaseDetailsTable extends Migration
             $table->unsignedBigInteger('product_id')->nullable();
             $table->string('product_name');
             $table->string('product_code');
-            $table->integer('quantity');
-            $table->integer('price');
-            $table->integer('unit_price');
-            $table->integer('sub_total');
+            $table->decimal('quantity', 8, 2);
+            $table->decimal('price', 15, 2);
+            $table->decimal('unit_price', 15, 2);
+            $table->decimal('sub_total',15, 2);
             $table->integer('product_discount_amount');
             $table->string('product_discount_type')->default('fixed');
             $table->integer('product_tax_amount');

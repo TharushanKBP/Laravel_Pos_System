@@ -16,7 +16,7 @@ class CreateSalePaymentsTable extends Migration
         Schema::create('sale_payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sale_id');
-            $table->decimal('amount', 15, 2); // Changed to decimal with higher precision and scale
+            $table->decimal('amount', 15, 2);
             $table->date('date');
             $table->string('reference');
             $table->string('payment_method');

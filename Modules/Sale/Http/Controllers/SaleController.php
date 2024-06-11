@@ -18,16 +18,14 @@ use Modules\Sale\Http\Requests\UpdateSaleRequest;
 class SaleController extends Controller
 {
 
-    public function index(SalesDataTable $dataTable)
-    {
+    public function index(SalesDataTable $dataTable) {
         abort_if(Gate::denies('access_sales'), 403);
 
         return $dataTable->render('sale::index');
     }
 
 
-    public function create()
-    {
+    public function create() {
         abort_if(Gate::denies('create_sales'), 403);
 
         Cart::instance('sale')->destroy();
@@ -36,8 +34,7 @@ class SaleController extends Controller
     }
 
 
-    public function store(StoreSaleRequest $request)
-    {
+    public function store(StoreSaleRequest $request) {
         DB::transaction(function () use ($request) {
             $due_amount = $request->total_amount - $request->paid_amount;
 
@@ -95,7 +92,7 @@ class SaleController extends Controller
             if ($sale->paid_amount > 0) {
                 SalePayment::create([
                     'date' => $request->date,
-                    'reference' => 'INV/' . $sale->reference,
+                    'reference' => 'INV/'.$sale->reference,
                     'amount' => $sale->paid_amount,
                     'sale_id' => $sale->id,
                     'payment_method' => $request->payment_method
@@ -109,8 +106,7 @@ class SaleController extends Controller
     }
 
 
-    public function show(Sale $sale)
-    {
+    public function show(Sale $sale) {
         abort_if(Gate::denies('show_sales'), 403);
 
         $customer = Customer::findOrFail($sale->customer_id);
@@ -119,8 +115,7 @@ class SaleController extends Controller
     }
 
 
-    public function edit(Sale $sale)
-    {
+    public function edit(Sale $sale) {
         abort_if(Gate::denies('edit_sales'), 403);
 
         $sale_details = $sale->saleDetails;
@@ -152,8 +147,7 @@ class SaleController extends Controller
     }
 
 
-    public function update(UpdateSaleRequest $request, Sale $sale)
-    {
+    public function update(UpdateSaleRequest $request, Sale $sale) {
         DB::transaction(function () use ($request, $sale) {
 
             $due_amount = $request->total_amount - $request->paid_amount;
@@ -227,8 +221,7 @@ class SaleController extends Controller
     }
 
 
-    public function destroy(Sale $sale)
-    {
+    public function destroy(Sale $sale) {
         abort_if(Gate::denies('delete_sales'), 403);
 
         $sale->delete();

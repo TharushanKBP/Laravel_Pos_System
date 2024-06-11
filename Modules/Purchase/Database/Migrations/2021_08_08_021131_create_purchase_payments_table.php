@@ -16,7 +16,7 @@ class CreatePurchasePaymentsTable extends Migration
         Schema::create('purchase_payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('purchase_id');
-            $table->integer('amount');
+            $table->decimal('amount', 15, 2);
             $table->date('date');
             $table->string('reference');
             $table->string('payment_method');
