@@ -95,17 +95,17 @@
             <div class="table-responsive">
                 <table class="table table-striped">
                     <tr>
-                        <th>Tax ({{ $global_tax }}%)</th>
-                        <td>(+) {{ format_currency(Cart::instance($cart_instance)->tax()) }}</td>
+                        <th>Tax (+)</th>
+                        <td>{{ format_currency(Cart::instance($cart_instance)->tax()) }}</td>
                     </tr>
                     <!-- <tr>
                         <th>Discount ({{ $global_discount }}%)</th>
                         <td>(-) {{ format_currency(Cart::instance($cart_instance)->discount()) }}</td>
                     </tr> -->
                     <tr>
-                        <th>Shipping</th>
+                        <th>Shipping (+)</th>
                         <input type="hidden" value="{{ $shipping }}" name="shipping_amount">
-                        <td>(+) {{ format_currency($shipping) }}</td>
+                        <td>{{ format_currency($shipping) }}</td>
                     </tr>
                     <tr>
                         <th>Grand Total</th>
