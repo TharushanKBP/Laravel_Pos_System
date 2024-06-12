@@ -113,7 +113,7 @@
                         $total_with_shipping = Cart::instance($cart_instance)->total() + (float) $shipping
                         @endphp
                         <th>
-                            (=) {{ format_currency($total_with_shipping) }}
+                            {{ format_currency($total_with_shipping) }}
                         </th>
                     </tr>
                 </table>
