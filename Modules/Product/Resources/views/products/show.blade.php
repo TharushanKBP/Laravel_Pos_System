@@ -32,20 +32,20 @@
                                 <td>{{ $product->product_barcode_symbology }}</td>
                             </tr>
                             <tr>
-                                <th>Name</th>
-                                <td>{{ $product->product_name }}</td>
+                                <th> product Name</th>
+                                <td style="color: green;">{{ $product->product_name }}</td>
                             </tr>
                             <tr>
                                 <th>Category</th>
                                 <td>{{ $product->category->category_name }}</td>
                             </tr>
                             <tr>
-                                <th>Cost</th>
-                                <td>{{ format_currency($product->product_cost) }}</td>
+                                <th>Product Cost</th>
+                                <td style="color: red;">{{ format_currency($product->product_cost) }}</td>
                             </tr>
                             <tr>
-                                <th>Price</th>
-                                <td>{{ format_currency($product->product_price) }}</td>
+                                <th>Product Price</th>
+                                <td style="color: red;">{{ format_currency($product->product_price) }}</td>
                             </tr>
                             <tr>
                                 <th>Quantity</th>
@@ -80,7 +80,7 @@
                             </tr>
                             <tr>
                                 <th>Note</th>
-                                <td>{{ $product->product_note ?? 'N/A' }}</td>
+                                <td style="color: blue;">{{ $product->product_note ?? 'N/A' }}</td>
                             </tr>
                         </table>
                     </div>

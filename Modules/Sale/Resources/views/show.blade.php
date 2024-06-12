@@ -67,7 +67,6 @@
                                     <th class="align-middle">Shop Price</th>
                                     <th class="align-middle">Quantity</th>
                                     <th class="align-middle">Discount</th>
-                                    <!-- <th class="align-middle">Tax</th> -->
                                     <th class="align-middle">Sub Total</th>
                                 </tr>
                             </thead>
