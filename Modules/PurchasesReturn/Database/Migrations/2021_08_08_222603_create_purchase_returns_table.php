@@ -24,9 +24,9 @@ class CreatePurchaseReturnsTable extends Migration
             $table->integer('discount_percentage')->default(0);
             $table->integer('discount_amount')->default(0);
             $table->integer('shipping_amount')->default(0);
-            $table->integer('total_amount');
-            $table->integer('paid_amount');
-            $table->integer('due_amount');
+            $table->decimal('total_amount', 15, 2);
+            $table->decimal('paid_amount', 15, 2);
+            $table->decimal('due_amount', 15, 2);
             $table->string('status');
             $table->string('payment_status');
             $table->string('payment_method');

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title') || Kumara Hardware Pos</title>
+    <title>@yield('title') || GrabNGo</title>
     <meta content="Fahim Anzam Dip" name="author">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>Login || Kumara </title>
+    <title>Login || GrabNGo </title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/favicon.png') }}">
@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row mb-3">
             <div class="col-12 d-flex justify-content-center">
-                <img width="200" src="{{ asset('images/logo-dark_1.png') }}" alt="Logo">
+                <img width="200" src="{{ asset('images/logo.png') }}" alt="Logo">
             </div>
         </div>
         <div class="row justify-content-center">
@@ -79,7 +79,7 @@
 
                 <p class="text-center mt-5 lead">
                     Developed By :
-                    <a href="#" class="font-weight-bold text-primary">K/H CODEHUB</a>
+                    <a href="#" class="font-weight-bold text-primary">Zenexa</a>
                 </p>
             </div>
         </div>

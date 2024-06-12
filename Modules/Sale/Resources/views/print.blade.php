@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div style="text-align: center;margin-bottom: 25px;">
-                    <img width="180" src="{{ public_path('images/logo-dark_1.png') }}" alt="Logo">
+                    <img width="180" src="{{ public_path('images/logo.png') }}" alt="Logo">
                     <h4 style="margin-bottom: 20px;">
                         <span>Reference :</span> <strong>{{ $sale->reference }}</strong>
                     </h4>
